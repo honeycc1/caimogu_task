@@ -65,8 +65,9 @@ public class App {
             return;
         }
         List<String> score = CaiMoGUHelp2.checkGamePoint(LocalDate.now());
-        if (score.size()>=3){
+        if (score.size() >= 3) {
             log.error("无法获取更多影响力");
+            return;
         }
 
         //;
@@ -92,8 +93,8 @@ public class App {
 
 
         Set<String> delCaiMoGu = new HashSet<>();
-        int succee=0;
-        Set<String> ac=new HashSet<>();
+        int succee = 0;
+        Set<String> ac = new HashSet<>();
         for (String gameId : caiMoGuGameIds) {
             //从游民星空加载评论
             JSONObject names = CaiMoGUHelp2.getGameNameByGameId(gameId);
@@ -110,17 +111,17 @@ public class App {
                 int index = (int) (Math.random() * comments.size());
                 int i = CaiMoGUHelp2.acSore(gameId, comments.get(index));
 
-                if (i==0){
+                if (i == 0) {
                     succee++;
                     ac.add(gameId);
-                    log.error("{}:{}",cn,comments.get(index));
-                }else if (i==2){
+                    log.error("{}:{}", cn, comments.get(index));
+                } else if (i == 2) {
                     //账户被封直接退出
                     break;
                 }
                 delCaiMoGu.add(gameId);
             }
-            if (succee>=3){
+            if (succee >= 3) {
                 break;
             }
         }
