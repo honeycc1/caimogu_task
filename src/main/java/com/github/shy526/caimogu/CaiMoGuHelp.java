@@ -34,8 +34,8 @@ import java.util.*;
 
 @Slf4j
 public class CaiMoGuHelp {
-    public static Set<String> readResources(String fileName) {
-        Set<String> ids = new HashSet<>();
+    public static List<String> readResources(String fileName) {
+        List<String> ids = new ArrayList<>();
         ClassLoader classLoader = App.class.getClassLoader();
         URL resource = classLoader.getResource(fileName);
         if (resource == null) {

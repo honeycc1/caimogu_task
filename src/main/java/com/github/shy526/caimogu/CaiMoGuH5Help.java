@@ -1,3 +1,4 @@
+/*
 package com.github.shy526.caimogu;
 
 import com.alibaba.fastjson2.JSON;
@@ -74,13 +75,15 @@ public class CaiMoGuH5Help {
     }
 
 
-    /**
+    */
+/**
      * @param gameId id
      * @param order  hot newly
      * @param page
      * @param type   all  played clear
      * @return
-     */
+     *//*
+
     public static PageModel getGameCommentPage(String gameId, String order, String type, String page) {
 
         String url = "https://api.caimogu.cc/v2/game/commentList";
@@ -119,11 +122,13 @@ public class CaiMoGuH5Help {
         return new PageModel();
     }
 
-    /**
+    */
+/**
      * @param msgId   游戏Id
      * @param content 评论内容
      * @return 99999 已经评论过了
-     */
+     *//*
+
     public static int acGameCommentReply(String msgId, String content) {
         if (Config.INSTANCE.userInfo == null) {
             return -1;
@@ -186,13 +191,15 @@ public class CaiMoGuH5Help {
     }
 
 
-    /**
+    */
+/**
      * @param gameId  游戏Id
      * @param content 评论内容
      * @param score   2 4 6 8 10
      * @param process 1 玩过  2 通关
      * @return 99999 已经评论过了
-     */
+     *//*
+
     public static int acGameScore(String gameId, String content, String score, String process) {
         if (Config.INSTANCE.userInfo == null) {
             return -1;
@@ -313,12 +320,14 @@ public class CaiMoGuH5Help {
 
     }
 
-    /**
+    */
+/**
      * @param detailId id
      * @param order    newly 最新  default 默认
      * @param page
      * @return
-     */
+     *//*
+
     public static PageModel getCommentPage(String detailId, String order, String page) {
 
         String url = "https://api.caimogu.cc/v3/post/comment/list";
@@ -356,11 +365,13 @@ public class CaiMoGuH5Help {
         return new PageModel();
     }
 
-    /**
+    */
+/**
      * @param sort // all 全部 newly 最新 score 最高评分  want_play 最想玩
      * @param page
      * @return
-     */
+     *//*
+
     public static PageModel getGamePage(String sort, String page) {
         String url = "https://api.caimogu.cc/v2/game/list";
         Map<String, String> params = new HashMap<>();
@@ -397,13 +408,15 @@ public class CaiMoGuH5Help {
         return new PageModel();
     }
 
-    /**
+    */
+/**
      * 获取莫个圈子的帖子
      *
      * @param id   圈子Id
      * @param type 查寻帖子类型 newly 最新  hot 热帖  choice 精华  "" 全部
      * @param page 页码
-     */
+     *//*
+
     public static List<JSONObject> getDetailPage(String id, String type, String page) {
         String url = "https://api.caimogu.cc/v3/circle/detail/list";
         Map<String, String> params = new HashMap<>();
@@ -436,11 +449,13 @@ public class CaiMoGuH5Help {
         return new ArrayList<>();
     }
 
-    /**
+    */
+/**
      * 获取所有已回复的帖子和游戏Id
      *
      * @return type=1 帖子Id type=2 游戏Id 3 评论过游戏库中的评论
-     */
+     *//*
+
     public static Map<String, Set<String>> getReplyGroup(LocalDate now) {
         String nextKey = "";
         Map<String, Set<String>> group = new HashMap<>();
@@ -489,10 +504,12 @@ public class CaiMoGuH5Help {
     }
 
 
-    /*
+    */
+/*
 
      *直接评价
-     */
+     *//*
+
     public static boolean acComment(String pId, String content) {
         if (Config.INSTANCE.userInfo == null) {
             return false;
@@ -540,10 +557,12 @@ public class CaiMoGuH5Help {
         return false;
     }
 
-    /*
+    */
+/*
 
      *
-     */
+     *//*
+
     public static PageModel getReplyList(String nextKey) {
         if (Config.INSTANCE.userInfo == null) {
             return new PageModel();
@@ -582,11 +601,13 @@ public class CaiMoGuH5Help {
         return new PageModel();
     }
 
-    /**
+    */
+/**
      * 获取影响力和刷新UserInfo积分
      *
      * @return
-     */
+     *//*
+
     public static int getPoint() {
         if (Config.INSTANCE.userInfo == null) {
             return -1;
@@ -622,12 +643,14 @@ public class CaiMoGuH5Help {
         return -1;
     }
 
-    /**
+    */
+/**
      * 登录
      *
      * @param username
      * @param password
-     */
+     *//*
+
     public static void loginH5(String username, String password) {
 
         String url = "https://api.caimogu.cc/v3/login/account";
@@ -787,3 +810,4 @@ public class CaiMoGuH5Help {
         return emojiBuilder.toString();
     }
 }
+*/
