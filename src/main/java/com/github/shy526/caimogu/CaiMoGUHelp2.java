@@ -11,6 +11,7 @@ import okhttp3.*;
 import org.apache.commons.codec.binary.Base64;
 import org.jsoup.nodes.Document;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -90,7 +91,7 @@ public class CaiMoGUHelp2 {
         }, 0);
     }
 
-    public static List<String> checkGamePoint() {
+    public static List<String> checkGamePoint(LocalDate localDate) {
         String urlFormat = "https://www.caimogu.cc/user/my/wallet/list?act=point&page=%s";
         List<String> acIds = new ArrayList<>();
         boolean flag = true;
@@ -107,6 +108,18 @@ public class CaiMoGUHelp2 {
                     for (Object itemObj : jsonArray) {
                         JSONObject item = (JSONObject) itemObj;
                         String type = item.getString("type");
+                        if (localDate!=null){
+                            LocalDate datetime = item.getLocalDate("datetime");
+                            if (datetime.equals(localDate)) {
+                                if ("12".equals(type)) {
+                                    acIds.add(item.getString("name_id"));
+                                }
+                            }else if (datetime.isBefore(localDate)) {
+                                return false;
+                            }
+                            continue;
+                        }
+
                         if ("12".equals(type)) {
                             acIds.add(item.getString("name_id"));
                         }

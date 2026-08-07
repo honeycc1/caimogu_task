@@ -64,13 +64,18 @@ public class App {
             log.error("帐号可能被封禁,停止任务");
             return;
         }
+        List<String> score = CaiMoGUHelp2.checkGamePoint(LocalDate.now());
+        if (score.size()>=3){
+            log.error("无法获取更多影响力");
+        }
+
         //;
         List<String> acGames = new ArrayList<>();
         List<String> caiMoGuGameIds = new ArrayList<>();
         String acGameFileName = String.format("%s_acGameId.txt", userInfo.getUid());
         List<String> files = GithubHelp.getListFileName(ownerRepo, githubApiToken, "src/main/resources");
         if (!files.contains(acGameFileName)) {
-            acGames = CaiMoGUHelp2.checkGamePoint();
+            acGames = CaiMoGUHelp2.checkGamePoint(null);
             GithubHelp.createOrUpdateFile(String.join("\n", acGames), acGameFileName, ownerRepo, githubApiToken);
             log.error("创建-->{}", acGameFileName);
         }
