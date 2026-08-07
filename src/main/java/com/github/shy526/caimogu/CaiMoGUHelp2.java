@@ -186,7 +186,7 @@ public class CaiMoGUHelp2 {
                 .add("id", id.toString())
                 .add("type", "2")
                 .add("score", "10")
-                .add("content", "神中神非常好玩")
+                .add("content", comment)
                 .build();
         Request request = new Request.Builder()
                 .url("https://www.caimogu.cc/game/act/score") // 测试API，可替换为实际接口
