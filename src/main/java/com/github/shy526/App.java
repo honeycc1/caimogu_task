@@ -132,7 +132,7 @@ public class App {
 
         acGames.addAll(ac);
         GithubHelp.createOrUpdateFile(String.join("\n", acGames), acGameFileName, ownerRepo, githubApiToken);
-        log.error("同步-->{}", caiMoGuGameIdFileName);
+        log.error("同步-->{}", acGameFileName);
 
 
         Integer userPoint = CaiMoGUHelp2.getUserPoint();
