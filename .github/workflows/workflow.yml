@@ -1,7 +1,7 @@
 name: Java CI with Maven
 on:
   schedule:
-    - cron: '0 9 * * *'
+    - cron: '0 17 * * *'
   workflow_dispatch:
 jobs:
   build:

@@ -18,7 +18,7 @@ public class OkHttpHelp {
     public static <T, K> T getParse(String url, BiFunction<K, Headers, T> success, int resultType) {
         Request request = new Request.Builder().url(url).build();
 
-        return   executeRequestParse(request, success, resultType);
+        return executeRequestParse(request, success, resultType);
     }
 
     public static <T, K> T postJsonBodyParse(String url, String jsonStr, BiFunction<K, Headers, T> success, int resultType) {
@@ -55,7 +55,13 @@ public class OkHttpHelp {
                 result = (R) documentProcessor(body);
             }
             Headers headers = response.headers();
-            return (T) success.apply(result, headers);
+            try {
+                return (T) success.apply(result, headers);
+            } catch (Exception e) {
+                log.error("success处理异常:{}", e.getMessage());
+                log.error(e.getMessage(), e);
+            }
+
 
         } catch (Exception ex) {
             log.error("{}:{}", request.toCurl(), ex.getMessage());
