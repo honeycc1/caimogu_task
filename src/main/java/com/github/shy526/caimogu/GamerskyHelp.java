@@ -130,6 +130,7 @@ public class GamerskyHelp {
                         comment = comment.replaceAll("<br/>", "\n");
                         comment = comment.replaceAll("<[^>]+>", "");
                         comment = comment.replaceAll("\\s+", "");
+                        comment = comment.replaceAll("&nbsp;", "");
                         comments.add(comment);
                     }
                 }
