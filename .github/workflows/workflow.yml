@@ -1,11 +1,14 @@
 name: Java CI with Maven
 on:
   schedule:
-    - cron: '0 17 * * *'
+    - cron: '0 01 * * *'
+      timezone: Asia/Shanghai
   workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Shanghai
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 1.8
@@ -20,5 +23,4 @@ jobs:
           MY_GITHUB_API_TOKEN: ${{secrets.MY_GITHUB_API_TOKEN}}
           CMG_PASSWORD: ${{secrets.CMG_PASSWORD}}
           CMG_NAME: ${{secrets.CMG_NAME}}
-
         run: mvn -B -q package --file pom.xml

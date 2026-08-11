@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -64,6 +65,10 @@ public class App {
             log.error("帐号可能被封禁,停止任务");
             return;
         }
+        ZoneId defaultZone = ZoneId.systemDefault();
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDate now = LocalDate.now();
+        log.error("{}:{}", defaultZone, fmt.format(LocalDateTime.now()));
         List<String> score = CaiMoGUHelp2.checkGamePoint(LocalDate.now());
         if (score.size() >= 3) {
             log.error("无法获取更多影响力");
