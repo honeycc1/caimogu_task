@@ -4,26 +4,20 @@ import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import com.github.shy526.App;
-import com.github.shy526.config.Config;
 import com.github.shy526.factory.OkHttpClientFactory;
-import com.github.shy526.vo.UserInfo;
 import lombok.extern.slf4j.Slf4j;
-import okhttp3.*;
-import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.codec.digest.Md5Crypt;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import javax.crypto.Cipher;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.YearMonth;
@@ -387,8 +381,6 @@ public class CaiMoGuHelp {
         int index = random.nextInt(result.size());
         return "<p>" + Jsoup.parse(result.get(index)).text() + "</p>";
     }
-
-
 
 
 }

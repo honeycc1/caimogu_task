@@ -26,12 +26,12 @@ public class OkHttpClientFactory {
         }
         if (ssfFactory == null) {
             log.error("OkHttp init error ssfFactory is null ");
-            client=new OkHttpClient.Builder().addInterceptor(new UserAgentInterceptor()).build();
+            client = new OkHttpClient.Builder().addInterceptor(new UserAgentInterceptor()).build();
             return;
         }
         this.client = new OkHttpClient.Builder()
                 .addInterceptor(new UserAgentInterceptor())
-                .sslSocketFactory(ssfFactory,new TrustAllCerts())
+                .sslSocketFactory(ssfFactory, new TrustAllCerts())
                 .hostnameVerifier(new TrustAllHostnameVerifier())
                 .build();
 
@@ -47,6 +47,7 @@ public class OkHttpClientFactory {
         }
         return instance;
     }
+
     public OkHttpClient getClient() {
         return client;
     }

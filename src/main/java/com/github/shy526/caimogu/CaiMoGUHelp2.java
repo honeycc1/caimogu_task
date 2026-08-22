@@ -7,13 +7,17 @@ import com.github.shy526.factory.OkHttpClientFactory;
 import com.github.shy526.okhttp.OkHttpHelp;
 import com.github.shy526.vo.UserInfo2;
 import lombok.extern.slf4j.Slf4j;
-import okhttp3.*;
+import okhttp3.FormBody;
+import okhttp3.Headers;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import org.apache.commons.codec.binary.Base64;
 import org.jsoup.nodes.Document;
 
 import java.time.LocalDate;
-import java.util.*;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -108,13 +112,13 @@ public class CaiMoGUHelp2 {
                     for (Object itemObj : jsonArray) {
                         JSONObject item = (JSONObject) itemObj;
                         String type = item.getString("type");
-                        if (localDate!=null){
+                        if (localDate != null) {
                             LocalDate datetime = item.getLocalDate("datetime");
                             if (datetime.equals(localDate)) {
                                 if ("12".equals(type)) {
                                     acIds.add(item.getString("name_id"));
                                 }
-                            }else if (datetime.isBefore(localDate)) {
+                            } else if (datetime.isBefore(localDate)) {
                                 return false;
                             }
                             continue;

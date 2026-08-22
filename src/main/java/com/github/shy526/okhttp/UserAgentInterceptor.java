@@ -1,13 +1,11 @@
 package com.github.shy526.okhttp;
 
 import com.github.shy526.config.Config;
-import com.github.shy526.vo.UserInfo;
 import com.github.shy526.vo.UserInfo2;
 import okhttp3.*;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class UserAgentInterceptor implements Interceptor {
     @Override
@@ -19,14 +17,14 @@ public class UserAgentInterceptor implements Interceptor {
         UserInfo2 userInfo = Config.INSTANCE.userInfo;
         if (userInfo != null) {
             if (url.host().equals("www.caimogu.cc")) {
-                requestBuilder.addHeader("x-requested-with","XMLHttpRequest");
-                if (!url.encodedPath().equals("/game/find.html")){
+                requestBuilder.addHeader("x-requested-with", "XMLHttpRequest");
+                if (!url.encodedPath().equals("/game/find.html")) {
                     Headers headers = original.headers();
                     List<String> cookies = headers.values("cookie");
-                    String newCookie=String.join(";", cookies);
-                    if (cookies.isEmpty()){
-                        newCookie =  userInfo.getToken();
-                    }else {
+                    String newCookie = String.join(";", cookies);
+                    if (cookies.isEmpty()) {
+                        newCookie = userInfo.getToken();
+                    } else {
                         newCookie += ";" + userInfo.getToken();
                     }
                     requestBuilder.addHeader("cookie", newCookie);

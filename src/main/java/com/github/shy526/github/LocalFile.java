@@ -7,15 +7,13 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Slf4j
 public class LocalFile {
 
-    public static void  writeFile(String fileName, Set<String> contents){
+    public static void writeFile(String fileName, Set<String> contents) {
         String runDir = new File("").getAbsoluteFile().getAbsolutePath();
         String filePath = runDir + File.separator + fileName;
         try {
@@ -26,7 +24,7 @@ public class LocalFile {
     }
 
 
-    public static Set<String>  readFile(String fileName){
+    public static Set<String> readFile(String fileName) {
         String runDir = new File("").getAbsoluteFile().getAbsolutePath();
         String filePath = runDir + File.separator + fileName;
         try {

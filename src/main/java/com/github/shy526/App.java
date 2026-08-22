@@ -8,7 +8,6 @@ import com.github.shy526.caimogu.GamerskyHelp;
 import com.github.shy526.config.Config;
 import com.github.shy526.github.GithubHelp;
 import com.github.shy526.vo.GithubInfo;
-import com.github.shy526.vo.UserInfo;
 import com.github.shy526.vo.UserInfo2;
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,7 +15,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Hello world!
@@ -75,7 +77,6 @@ public class App {
             return;
         }
 
-        //;
         List<String> acGames = new ArrayList<>();
         List<String> caiMoGuGameIds = new ArrayList<>();
         String acGameFileName = String.format("%s_acGameId.txt", userInfo.getUid());
