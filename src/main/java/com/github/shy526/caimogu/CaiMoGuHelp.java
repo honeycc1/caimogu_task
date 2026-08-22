@@ -33,6 +33,7 @@ import java.util.*;
 
 
 @Slf4j
+@Deprecated
 public class CaiMoGuHelp {
     public static List<String> readResources(String fileName) {
         List<String> ids = new ArrayList<>();

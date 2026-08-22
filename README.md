@@ -1,7 +1,12 @@
 # 踩蘑菇每天3点影响力
-  现在只能嫖3点 看后续吧
-  ~~已经失效,使用会导致影响力变负~~
+  试跑半个月挺稳定的
+
+  现在只能嫖3点
+
   已经恢复
+
+~~已经失效,使用会导致影响力变负~~
+
 
 ## 配置方式
 1.  fork仓库
@@ -20,7 +25,7 @@
    - ~~gameComment.txt~~  ~~(记录评论游戏库评论)~~
 
 ## 更新
-- 2026..08.08
+- 2026.08.08
   - 只保留游戏库评论功能
   - 添加从游民星空获取评论转移到踩蘑菇的功能
   - 后面应该会添加别的网站转移的功能
@@ -86,8 +91,19 @@
 - https://www.caimogu.cc/post/act/comment
   - 评论帖子
 
+- https://www.caimogu.cc/login.html
+  - 登录页
+  
+- https://www.caimogu.cc/logi
+  - 登录
+  
+- https://www.caimogu.cc/user/my/wallet/list?act=point&page=%s
+  - 影响力删减列表
 
-### h5接口
+- https://www.caimogu.cc/game/find.html?act=fetch&score=%s&kw=&platforms=&tags=&status=0&sort=2&sort_desc=1&page=%s
+  - 按评分的游戏库列表
+  
+### 踩蘑菇h5接口
 
 - https://api.caimogu.cc/v2/game/commentList
   - 游戏评论列表
@@ -118,3 +134,12 @@
 
 - https://api.caimogu.cc/v3/login/account
   - 登录
+
+
+### 踩蘑菇h5接口
+
+- https://so.gamersky.com/all/ku?s=%s
+  - 游戏查询
+
+- https://router5.gamersky.com/@/gameScoreDetailPage/index/6.0.0/0
+  - 获取评论
