@@ -154,7 +154,7 @@ public class CaiMoGuTask {
         Integer userPoint = CaiMoGUHelp2.getUserPoint();
         log.error("本次任务获取: {}-{} - {}", userInfo.getUid(), userInfo.getNickname(), userPoint - userInfo.getPoint());
         nowEx += userPoint - userInfo.getPoint();
-        accountMap.put(key, nowEx + userPoint - userInfo.getPoint());
+        accountMap.put(key, nowEx);
         syncAccountFile(accountMap, repoPath, accountInfoFileName, ownerRepo, githubApiToken);
         log.error("积分任务完成情况: {}-{} {}/{}", userInfo.getUid(), userInfo.getNickname(), nowEx, ex);
         Config.INSTANCE.userInfo = null;
