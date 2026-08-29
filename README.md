@@ -22,7 +22,7 @@
         - 仓库存储txt的路径
         - 默认 `src/main/resources`
         - `/` 代表根目录
-    - SUB_ACCOUNT
+    - `SUB_ACCOUNT`
         - `expiration`
             - 代表要获取的总积分
         - 格式要求
