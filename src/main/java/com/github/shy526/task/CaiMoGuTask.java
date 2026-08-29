@@ -31,7 +31,7 @@ public class CaiMoGuTask {
 
         UserInfo2 userInfo = CaiMoGUHelp2.login(userName, password);
         if (userInfo == null) {
-            log.error("踩蘑菇 用户名/密码错误,或者踩蘑菇接口失效");
+            log.error("{} 踩蘑菇 用户名/密码错误,或者踩蘑菇接口失效",userName);
             return;
         }
         CaiMoGUHelp2.fillUserInfo(userInfo);
@@ -42,27 +42,43 @@ public class CaiMoGuTask {
         }
         ZoneId defaultZone = ZoneId.systemDefault();
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDate now = LocalDate.now();
-        log.error("{}:{}", defaultZone, fmt.format(LocalDateTime.now()));
+      //  LocalDate now = LocalDate.now();
+       // log.error("{}:{}", defaultZone, fmt.format(LocalDateTime.now()));
         List<String> score = CaiMoGUHelp2.checkGamePoint(LocalDate.now());
-        if (score.size() >= 3) {
-            log.error("无法获取更多影响力");
+
+
+        List<String> files = GithubHelp.getListFileName(ownerRepo, githubApiToken, repoPath);
+
+        String accountInfoFileName = "accountInfo.txt";
+        if (!files.contains(accountInfoFileName)) {
+            GithubHelp.createOrUpdateFile(userInfo.account + "-" + userInfo.getUid() + ":" + 0, repoPath + "/" + accountInfoFileName, ownerRepo, githubApiToken);
+            log.error("创建-->{}", accountInfoFileName);
+        }
+
+        Map<String, Integer> accountMap = getAccountMap(repoPath, accountInfoFileName, ownerRepo, githubApiToken);
+        String key = userInfo.account + "-" + userInfo.getUid();
+        if (!accountMap.containsKey(key)) {
+            accountMap.put(key, 0);
+            syncAccountFile(accountMap, repoPath, accountInfoFileName, ownerRepo, githubApiToken);
+        }
+
+        Integer nowEx = accountMap.get(key);
+        if (nowEx >= ex && ex != -1) {
+            log.error("{}-{}的积分任务已完成 {}/{}", userInfo.getAccount(), userInfo.getUid(), nowEx, ex);
             return;
         }
 
-        String accountInfoFileName = "accountInfo.txt";
+        if (score.size() >= 3) {
+            log.error("无法获取更多影响力,积分任务完成情况: {}-{} {}/{}", userInfo.getUid(), userInfo.getNickname(), nowEx, ex);
+            return;
+        }
+
+
 
         List<String> acGames;
         List<String> caiMoGuGameIds;
         String acGameFileName = String.format("%s_acGameId.txt", userInfo.getUid());
 
-        List<String> files = GithubHelp.getListFileName(ownerRepo, githubApiToken, repoPath);
-
-
-        if (!files.contains(accountInfoFileName)) {
-            GithubHelp.createOrUpdateFile(userInfo.account + "-" + userInfo.getUid() + ":" + 0, repoPath + "/" + accountInfoFileName, ownerRepo, githubApiToken);
-            log.error("创建-->{}", accountInfoFileName);
-        }
 
         if (!files.contains(acGameFileName)) {
             acGames = CaiMoGUHelp2.checkGamePoint(null);
@@ -76,17 +92,7 @@ public class CaiMoGuTask {
             GithubHelp.createOrUpdateFile(String.join("\n", caiMoGuGameIds), repoPath + "/" + caiMoGuGameIdFileName, ownerRepo, githubApiToken);
             log.error("创建-->{}-{}", caiMoGuGameIdFileName, caiMoGuGameIds.size());
         }
-        Map<String, Integer> accountMap = getAccountMap(repoPath, accountInfoFileName, ownerRepo, githubApiToken);
-        String key = userInfo.account + "-" + userInfo.getUid();
-        if (!accountMap.containsKey(key)) {
-            accountMap.put(key, 0);
-            syncAccountFile(accountMap, repoPath, accountInfoFileName, ownerRepo, githubApiToken);
-        }
-        Integer nowEx = accountMap.get(key);
-        if (nowEx >= ex && ex != -1) {
-            log.error("{}-{}的积分任务已完成 {}/{}", userInfo.getAccount(), userInfo.getUid(), nowEx, ex);
-            return;
-        }
+
         caiMoGuGameIds = getFileContent(repoPath, caiMoGuGameIdFileName, ownerRepo, githubApiToken);
         acGames = getFileContent(repoPath, acGameFileName, ownerRepo, githubApiToken);
         //  caiMoGuGameIds = CaiMoGuHelp.readResources(caiMoGuGameIdFileName);
