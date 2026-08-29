@@ -19,7 +19,7 @@ jobs:
           cache: maven
       - name: Build with Maven
         env:
-          OWNER_REPO: ${{secrets.OWNER_REPO}}
+          OWNER_REPO: ${{vars.OWNER_REPO}}
           MY_GITHUB_API_TOKEN: ${{secrets.MY_GITHUB_API_TOKEN}}
           CMG_PASSWORD: ${{secrets.CMG_PASSWORD}}
           CMG_NAME: ${{secrets.CMG_NAME}}
