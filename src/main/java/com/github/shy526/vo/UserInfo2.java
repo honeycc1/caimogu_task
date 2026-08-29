@@ -4,8 +4,9 @@ import lombok.Data;
 
 @Data
 public class UserInfo2 {
-    private String Nickname;
-    private String Token;
+    private String nickname;
+    private String token;
     private String Uid;
-    private Integer Point;
+    private Integer point;
+    public String account;
 }

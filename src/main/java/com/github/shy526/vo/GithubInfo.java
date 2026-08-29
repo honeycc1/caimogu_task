@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class GithubInfo {
-    private String OwnerRepo;
-    private String GithubApiToken;
+    private String ownerRepo;
+    private String githubApiToken;
+    private String repoPath="src/main/resources";
 }

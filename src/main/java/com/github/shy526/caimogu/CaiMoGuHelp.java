@@ -47,6 +47,24 @@ public class CaiMoGuHelp {
         return ids;
     }
 
+    public static String readResourcesJs(String fileName) {
+        StringBuilder sb = new StringBuilder();
+        ClassLoader classLoader = App.class.getClassLoader();
+        URL resource = classLoader.getResource(fileName);
+        if (resource == null) {
+            return sb.toString();
+        }
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(classLoader.getResourceAsStream(fileName), StandardCharsets.UTF_8))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return sb.toString();
+    }
+
     /**
      * 获取参考 踩蘑菇中所有游戏Id
      *

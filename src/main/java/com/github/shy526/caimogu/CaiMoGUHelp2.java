@@ -15,9 +15,7 @@ import org.apache.commons.codec.binary.Base64;
 import org.jsoup.nodes.Document;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -70,6 +68,7 @@ public class CaiMoGUHelp2 {
         if (userInfo == null) {
             return null;
         }
+        userInfo.account = username;
         Config.INSTANCE.userInfo = userInfo;
         return userInfo;
     }

@@ -9,6 +9,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.function.BiFunction;
 
 @Slf4j
@@ -105,6 +106,15 @@ public class OkHttpHelp {
         }
 
         return result;
+    }
+
+    public static String buildGetUrl(String domainName, String path,Map<String,String> params){
+        HttpUrl.Builder builder = HttpUrl.parse(domainName).newBuilder().encodedPath(path);
+        for (Map.Entry<String, String> entry : params.entrySet()) {
+            builder.addQueryParameter(entry.getKey(), entry.getValue());
+        }
+        HttpUrl httpUrl = builder.build();
+        return httpUrl.toString();
     }
 
 }

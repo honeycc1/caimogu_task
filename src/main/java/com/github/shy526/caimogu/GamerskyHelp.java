@@ -3,6 +3,7 @@ package com.github.shy526.caimogu;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import com.github.shy526.okhttp.OkHttpHelp;
+import com.google.common.collect.Sets;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Headers;
 import org.jsoup.nodes.Document;
@@ -13,6 +14,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Slf4j
 public class GamerskyHelp {
@@ -94,7 +96,7 @@ public class GamerskyHelp {
      * @param contentUrl
      * @return
      */
-    public static List<String> getComment(String contentUrl) {
+    public static Set<String> getComment(String contentUrl) {
         String jsonFormat = "{\n" +
                 "    \"commentFiltrateParams\": {\n" +
                 "        \"userLabelTypes\": [\n" +
@@ -114,7 +116,7 @@ public class GamerskyHelp {
 
 
         String url = "https://router5.gamersky.com/@/gameScoreDetailPage/index/6.0.0/0";
-        List<String> comments = new ArrayList<>();
+        Set<String> comments = Sets.newHashSet();
         for (int pageIndex = 0; comments.size() < 100; pageIndex++) {
             String jsonStr = String.format(jsonFormat, contentUrl, pageIndex);
 
@@ -143,10 +145,10 @@ public class GamerskyHelp {
         return comments;
     }
 
-    public static List<String> getCommentsByGameName(String gameName) {
+    public static  Set<String> getCommentsByGameName(String gameName) {
         String target = GamerskyHelp.getContentUrlByGameName(gameName);
         if (target == null || target.isEmpty()) {
-            return new ArrayList<>();
+            return Sets.newHashSet();
         }
         return GamerskyHelp.getComment(target);
 

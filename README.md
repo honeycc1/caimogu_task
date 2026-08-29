@@ -18,6 +18,20 @@
     - `MY_GITHUB_API_TOKEN` githubapiToken 需要读写权限
     - `CMG_NAME` 踩蘑菇帐号名
     - `CMG_PASSWORD` 踩蘑菇密码
+    - `REPO_PATH`
+        - 仓库存储txt的路径
+        - 默认 `src/main/resources`
+        - `/` 代表根目录
+    - SUB_ACCOUNT
+        - `expiration`
+            - 代表要获取的总积分
+        - 格式要求
+    ```json
+    [
+      { "name": "2", "pas": "密码.", "expiration": "90" },
+      { "name": "3", "pas": "密码.", "expiration": "90" }
+    ]
+    ```
 
 ~~3. 删除文件~~
 
@@ -27,6 +41,16 @@
 - ~~gameComment.txt~~  ~~(记录评论游戏库评论)~~
 
 ## 更新
+
+- 2026.08.08
+    - 小黑盒评论获取-
+        - 增加评论多样性
+    - 配置多账号的变量
+        - SUB_ACCOUNT
+    - 可以设置仓库路径的变量
+        - REPO_PATH
+    - 增加了总积分机制
+        - 满足总积分后不在获得积分
 
 - 2026.08.08
     - 只保留游戏库评论功能
@@ -142,4 +166,12 @@
     - 游戏查询
 
 - https://router5.gamersky.com/@/gameScoreDetailPage/index/6.0.0/0
+    - 获取评论
+
+## 小黑盒
+
+- https://api.xiaoheihe.cn/bbs/app/api/general/search/v1
+    - 搜索
+
+- https://api.xiaoheihe.cn/bbs/app/link/game/comments
     - 获取评论

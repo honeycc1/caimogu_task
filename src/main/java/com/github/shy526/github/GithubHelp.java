@@ -13,7 +13,7 @@ import java.util.List;
 
 @Slf4j
 public class GithubHelp {
-    private static final String CREATE_UPDATE_PATH = "/repos/%s/contents/src/main/resources/%s";
+    private static final String CREATE_UPDATE_PATH = "/repos/%s/contents/%s";
     private static final String CREATE_FILE_LIST_PATH = "/repos/%s/contents/%s";
     private static final String GITHUB_HOST = "https://api.github.com%s";
 
@@ -42,6 +42,9 @@ public class GithubHelp {
     }
 
     public static void createOrUpdateFile(String content, String fileName, String ownerRepo, String token) {
+        if (fileName.startsWith("/")) {
+            fileName= fileName.substring(1);
+        }
         OkHttpClient client = OkHttpClientFactory.getInstance().getClient();
         String base64Content = Base64.encodeBase64String(content.getBytes());
         JSONObject contentJson = getContent(fileName, ownerRepo, token);
