@@ -31,7 +31,7 @@ public class CaiMoGuTask {
 
         UserInfo2 userInfo = CaiMoGUHelp2.login(userName, password);
         if (userInfo == null) {
-            log.error("{} 踩蘑菇 用户名/密码错误,或者踩蘑菇接口失效",userName);
+            log.error("{} 踩蘑菇 用户名/密码错误,或者踩蘑菇接口失效", userName);
             return;
         }
         CaiMoGUHelp2.fillUserInfo(userInfo);
@@ -42,8 +42,8 @@ public class CaiMoGuTask {
         }
         ZoneId defaultZone = ZoneId.systemDefault();
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-      //  LocalDate now = LocalDate.now();
-       // log.error("{}:{}", defaultZone, fmt.format(LocalDateTime.now()));
+        //  LocalDate now = LocalDate.now();
+        // log.error("{}:{}", defaultZone, fmt.format(LocalDateTime.now()));
         List<String> score = CaiMoGUHelp2.checkGamePoint(LocalDate.now());
 
 
@@ -72,7 +72,6 @@ public class CaiMoGuTask {
             log.error("无法获取更多影响力,积分任务完成情况: {}-{} {}/{}", userInfo.getUid(), userInfo.getNickname(), nowEx, ex);
             return;
         }
-
 
 
         List<String> acGames;
@@ -128,9 +127,14 @@ public class CaiMoGuTask {
                 if (i == 0) {
                     succee++;
                     ac.add(gameId);
-                    log.error("{}:{}", cn, comments.get(index));
+                    String[] tempStr = comments.get(index).split("\n");
+                    log.error("{}:{}", cn, tempStr[0]);
                 } else if (i == 2) {
                     //账户被封直接退出
+                    break;
+                } else if (i == 3) {
+                    //重複評論
+                    ac.add(gameId);
                     break;
                 }
             } else {

@@ -205,6 +205,9 @@ public class CaiMoGUHelp2 {
                 if (info.equals("您的账户已被禁言")) {
                     flag.set(2);
                 }
+                if (info.equals("请勿重复评分")) {
+                    flag.set(3);
+                }
             }
             return null;
         }, 0);
